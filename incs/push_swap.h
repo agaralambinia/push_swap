@@ -15,7 +15,6 @@ typedef struct s_stack
 	struct s_stack	*prev;
 } t_stack;
 
-int     main(int argc, char **argv);
 int		isspace_check(const char a);
 long	ft_atol(const char *str);
 int		free_free(char **str);
@@ -26,7 +25,7 @@ int		st_fill(t_stack **a, char **argv);
 t_stack	*st_find_last(t_stack *a);
 void	sa_sb(t_stack **ab, char *output);
 void	ss(t_stack **a, t_stack **b);
-void	pa_pb(t_stack **src, t_stack **target, char *output);
+void	pa_pb(t_stack **dst, t_stack **src, char *output);
 void	ra_rb(t_stack **ab, char *output);
 void	rra_rrb(t_stack **ab, char *output);
 void	rr(t_stack **a, t_stack **b);

@@ -35,21 +35,12 @@ int	st_fill(t_stack **a, char **argv)
 		while (*uargv)
 		{
 			if (arg_unit_checker(*uargv) == -1)
-			{
-				//ft_printf("arg_unit_checker\n");
 				return (-1);
-			}
 			nbr = ft_atol(*uargv);
 			if (nbr < -2147483648 || nbr > 2147483647)
-			{
-				//ft_printf("MAXINTMININT\n");
 				return (-1);
-			}
 			if (dubl_checker(*a, (int)nbr))
-			{
-				//ft_printf("dubl_checker\n");
 				return (-1);
-			}
 			st_insert(a, (int)nbr);
 			uargv++;
 		}

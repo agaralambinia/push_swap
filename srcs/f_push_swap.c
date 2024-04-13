@@ -2,14 +2,15 @@
 
 void	sa_sb(t_stack **ab, char *output)
 {
-	t_stack	*temp;
-
-	if ((*ab) == NULL || (*ab)->next == NULL)
+	if ((*ab) == NULL || ab == NULL || (*ab)->next == NULL)
 		return ;
-	temp = (*ab)->next;
-	(*ab)->next = (*ab)->next->next;
-	temp->next = (*ab);
-	(*ab) = temp;
+	*ab = (*ab)->next;
+	(*ab)->prev->prev = *ab;
+	(*ab)->prev->next = (*ab)->next;
+	if ((*ab)->next)
+		(*ab)->next->prev = (*ab)->prev;
+	(*ab)->next = (*ab)->prev;
+	(*ab)->prev = NULL;
 	if (output)
 		ft_printf("%s\n", output);
 }
@@ -21,18 +22,28 @@ void	ss(t_stack **a, t_stack **b)
 	ft_printf("ss\n");
 }
 
-void	pa_pb(t_stack **src, t_stack **target, char *output)
+void	pa_pb(t_stack **dst, t_stack **src, char *output)
 {
-	t_stack	*temp;
+	t_stack	*migrant;
 
 	if ((*src) == NULL)
 		return ;
-	temp = (*src)->next;
-	if ((*target) == NULL)
-		(*src)->next = NULL;
+	migrant = *src;
+	*src = (*src)->next;
+	if (*src)
+		(*src)->prev = NULL;
+	//migrant->prev = NULL;
+	if (*dst == NULL)
+	{
+		*dst = migrant;
+		migrant->next = NULL;
+	}
 	else
-		(*src)->next = (*target);
-	(*target) = (*src);
-	(*src) = temp;
-	ft_printf("%s\n", output);
+	{
+		migrant->next = *dst;
+		migrant->next->prev = migrant;
+		*dst = migrant;
+	}
+	if (output)
+		ft_printf("%s\n", output);
 }
