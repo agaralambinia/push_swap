@@ -6,13 +6,13 @@
 typedef struct s_stack
 {
 	int				data;
-	int				position;
-	int				end_index;
-	int				push_price;
+	int				place;
+	int				p_distance;
 	int				above_median;
 	int				cheapest;
-	struct s_stack	*next;
 	struct s_stack	*prev;
+	struct s_stack	*next;
+	struct s_stack	*place;
 } t_stack;
 
 int		isspace_check(const char a);

@@ -57,3 +57,44 @@ t_stack	*st_find_last(t_stack *a)
 		a = a->next;
 	return (a);
 }
+
+t_stack	*st_find_min(t_stack *a)
+{
+	int			min;
+	t_stack_node	*s_min;
+
+	if (a == NULL)
+		return (NULL);
+	min = INT_MAX;
+	while (a != NULL)
+	{
+		if (a->value <= min)
+		{
+			min = a->value;
+			s_min = a;
+		}
+		a = a->next;
+	}
+	return (s_min);
+}
+
+
+t_stack	*st_find_max(t_stack *a)
+{
+	int				max;
+	t_stack			*s_max;
+
+	if (a == NULL)
+		return (NULL);
+	max = INT_MIN;
+	while (a != NULL)
+	{
+		if (a->value >= max)
+		{
+			max = a->value;
+			s_max = a;
+		}
+		a = a->next;
+	}
+	return (s_max);
+}
