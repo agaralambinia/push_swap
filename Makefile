@@ -1,11 +1,14 @@
 NAME = push_swap
 
-SRC = srcs/push_swap.c\
+SRC = srcs/algorithm.c\
 	  srcs/f_common.c\
-	  srcs/input_check.c\
-	  srcs/f_stack.c\
 	  srcs/f_push_swap.c\
-	  srcs/f_rotate.c
+	  srcs/f_rotate.c\
+	  srcs/f_stack_edit.c\
+	  srcs/f_stack_fill_meta.c\
+	  srcs/f_stack_metadata.c\
+	  srcs/input_check.c\
+	  srcs/push_swap.c
 
 OBJ = ${SRC:.c=.o}
 

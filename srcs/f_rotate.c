@@ -17,6 +17,13 @@ void	ra_rb(t_stack **ab, char *output)
 		ft_printf("%s\n", output);
 }
 
+void	rr(t_stack **a, t_stack **b)
+{
+	ft_printf("rr\n");
+	ra_rb(a, NULL);
+	ra_rb(b, NULL);
+}
+
 void	rra_rrb(t_stack **ab, char *output)
 {
 	t_stack	*last;
@@ -40,16 +47,9 @@ void	rra_rrb(t_stack **ab, char *output)
 		ft_printf("%s\n", output);
 }
 
-void	rr(t_stack **a, t_stack **b)
-{
-	ra_rb(a, NULL);
-	ra_rb(b, NULL);
-	ft_printf("rr\n");
-}
-
 void	rrr(t_stack **a, t_stack **b)
 {
+	ft_printf("rrr\n");
 	rra_rrb(a, NULL);
 	rra_rrb(b, NULL);
-	ft_printf("rrr\n");
 }

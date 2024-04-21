@@ -10,22 +10,20 @@ int	main(int argc, char **argv)
 	if ((argc < 2) || (argc == 2 && !argv[1][0]))
 	{
 		ft_printf("Error\n");
+		st_free(&a);
+		st_free(&b);
 		exit(EXIT_FAILURE);
 	}
 	if (st_fill(&a, argv + 1) == -1)
 	{
 		ft_printf("Error\n");
+		st_free(&a);
+		st_free(&b);
 		exit(EXIT_FAILURE);
 	}
-	//if (!st_sorted(a))
-	//{
-	//	if (st_len(a) == 2)
-	//		sa_sb(&a, 'sa');
-	//	else if (st_len(a) == 3)
-	//		tiny_sort(&a);
-	//	else
-	//		push_swap(&a, &b);
-	//}
-	//free_stack(&a);
+	if (st_sorted(a) == 0)
+		sorter(&a, &b);
+	st_free(&a);
+	st_free(&b);
 	return (0);
 }

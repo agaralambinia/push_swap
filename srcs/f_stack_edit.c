@@ -49,52 +49,19 @@ int	st_fill(t_stack **a, char **argv)
 	return (0);
 }
 
-t_stack	*st_find_last(t_stack *a)
+void	st_free(t_stack **ab)
 {
-	if (a == NULL)
-		return (NULL);
-	while (a->next)
-		a = a->next;
-	return (a);
-}
+	t_stack	*next;
+	t_stack	*tmp;
 
-t_stack	*st_find_min(t_stack *a)
-{
-	int			min;
-	t_stack_node	*s_min;
-
-	if (a == NULL)
-		return (NULL);
-	min = INT_MAX;
-	while (a != NULL)
+	if (ab == NULL)
+		return ;
+	tmp = *ab;
+	while (tmp != NULL)
 	{
-		if (a->value <= min)
-		{
-			min = a->value;
-			s_min = a;
-		}
-		a = a->next;
+		next = tmp->next;
+		free(tmp);
+		tmp = next;
 	}
-	return (s_min);
-}
-
-
-t_stack	*st_find_max(t_stack *a)
-{
-	int				max;
-	t_stack			*s_max;
-
-	if (a == NULL)
-		return (NULL);
-	max = INT_MIN;
-	while (a != NULL)
-	{
-		if (a->value >= max)
-		{
-			max = a->value;
-			s_max = a;
-		}
-		a = a->next;
-	}
-	return (s_max);
+	*ab = NULL;
 }

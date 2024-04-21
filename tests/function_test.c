@@ -29,7 +29,6 @@ void run_test_1(char **test, char *output)
         stack_output(&a);
 }
 
-
 void run_test_2(t_stack **test, void (*f)(t_stack**, char*), char *output)
 {
     ft_printf("%s", output);
@@ -43,6 +42,20 @@ void run_test2p(t_stack **t1, t_stack **t2, void (*f)(t_stack**, t_stack**, char
 	(*f)(t1, t2, NULL);
     stack_output(t2);
     stack_output(t1);
+}
+
+void run_test_3(char **test, char *output)
+{
+    t_stack	*a;
+    t_stack	*b;
+
+    a = NULL;
+    b = NULL;
+    ft_printf("%s", output);
+    st_fill(&a, test);
+    stack_output(&a);
+    sorter(&a, &b);
+    stack_output(&a);
 }
 
 int	main(void)
@@ -69,6 +82,7 @@ int	main(void)
     st_insert(&s5, 55);
     t_stack *s6 = NULL;
     st_insert(&s6, 100);
+    char *t9[31] = {"5 -1 2 4 0 9 3 -2 8 6 -5 -9 -10 1 20 15 -8 19 18 23 11 -4 -100 85 -34 -83 99 23 854 -900"};
 
     ft_printf("START TEST 1 - DIFFERENT ARGV INPUT\n");
     run_test_1(t1, "Running TEST1.1 - 1 correct value.\nInput = [' 1']. Expect: 1;\n");
@@ -97,5 +111,8 @@ int	main(void)
     run_test_2(&s3, &rra_rrb, "Running TEST2.REVERSE_ROTATE_2 - 2 elements in stack.\nInput = 20; 10. Expect: 10; 20;\n");
     run_test_2(&s6, &rra_rrb, "Running TEST2.REVERSE_ROTATE_3 - 1 element in stack.\nInput = 100. Expect: 100;\n");
     run_test_2(&s1, &rra_rrb, "Running TEST2.REVERSE_ROTATE_4 - 0 elements in stack.\nInput = NULL. Expect: NULL;\n");
+
+    ft_printf("\nSTART TEST 3 - ALGORITHM\n");
+    run_test_3(t9, "Running TEST3.1 - Just take a look. Input = '5 -1 2 4 0 9 3 -2 8 6 -5 -9 -10 1 20 15 -8 19 18 23 11 -4 -100 85 -34 -83 99 23 854 -900'\n");
 	return (0);
 }
