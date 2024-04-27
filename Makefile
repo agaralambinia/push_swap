@@ -8,7 +8,8 @@ SRC = srcs/algorithm.c\
 	  srcs/f_stack_fill_meta.c\
 	  srcs/f_stack_metadata.c\
 	  srcs/input_check.c\
-	  srcs/push_swap.c
+	  srcs/push_swap.c\
+	  srcs/sort_utils.c
 
 OBJ = ${SRC:.c=.o}
 

@@ -36,16 +36,30 @@ long	ft_atol(const char *str)
 	return (res * sign);
 }
 
-int	free_free(char **str)
+void	free_free(char **str)
 {
-	char	**temp;
+	int	i;
 
-	temp = str;
-	while (*str)
+	i = 0;
+	while (str[i] != NULL)
 	{
-		free(*str);
-		str++;
+		free(str[i]);
+		i++;
 	}
-	free(temp);
-	return (-1);
+	free(str);
+}
+
+void	ft_exit_error(void)
+{
+	ft_putstr_fd("Error\n", 2);
+	exit(1);
+}
+
+void	pointer_swap(int *a, int *b)
+{
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

@@ -1,39 +1,43 @@
 #include "../incs/push_swap.h"
 
-int	dubl_checker(t_stack *a, int nbr)
+int	dubl_checker(t_stack *a)
 {
-	if (a == NULL)
-		return (0);
-	while (a)
+	t_stack	*i;
+	t_stack	*j;
+
+	if (!a)
+		return (1);
+	i = a;
+	while (i != NULL)
 	{
-		//ft_printf("DUBL %i\n", nbr);
-		if (nbr == a->data)
-			return (1);
-		a = a->next;
+		j = i->next;
+		while (j != NULL)
+		{
+			if (i->data == j->data)
+				return (-1);
+			j = j->next;
+		}
+		i = i->next;
 	}
-	//ft_printf("DUBL EXIT %i\n", nbr);
 	return (0);
 }
 
-int	arg_unit_checker(char *uargv)
+void	arg_unit_checker(char *uargv)
 {
-    int sign;
+	int i;
 
-	sign = 0;
-	if ((uargv[0] == '-' || uargv[0] == '+') && uargv[1] == '\0')
-		return (-1);
-	while (*uargv)
+	i = 0;
+	if ((uargv[i] == '-' || uargv[i] == '+') && (uargv[i + 1] <= '9' || uargv[i + 1] >= '0'))
 	{
-    	if ((*uargv == '-' || *uargv == '+'))
-    	{
-    	    if (sign == 0)
-    	        sign++;
-    	    else
-			    return (-1);
-    	}
-		else if (*uargv > '9' || *uargv < '0')
-			return (-1);
-		uargv++;
+		if (uargv[i + 1] == '\0')
+			ft_exit_error();
+		else
+			i++;
 	}
-	return (0);
+	while (uargv[i])
+	{
+    	if (uargv[i] > '9' || uargv[i] < '0')
+			ft_exit_error();
+		i++;
+	}
 }

@@ -2,19 +2,19 @@
 
 void	ra_rb(t_stack **ab, char *output)
 {
-	t_stack	*last;
+	t_stack	*temp;
+	t_stack	*temp_two;
 
-	if (*ab == NULL || ab == NULL)
-		return ;
-	last = st_find_last(*ab);
-	last->next = *ab;
-	*ab = (*ab)->next;
-	(*ab)->prev = NULL;
-	last->next->prev = last;
-	last->next->next = NULL;
-	if ((*ab)->next == NULL)
 	if (output)
 		ft_printf("%s\n", output);
+	if (!ab || !*ab || !(*ab)->next)
+		return ;
+	temp = *ab;
+	temp_two = (*ab)->next;
+	*ab = st_find_last(*ab);
+	(*ab)->next = temp;
+	temp->next = NULL;
+	*ab = temp_two;
 }
 
 void	rr(t_stack **a, t_stack **b)
@@ -26,25 +26,20 @@ void	rr(t_stack **a, t_stack **b)
 
 void	rra_rrb(t_stack **ab, char *output)
 {
+	t_stack	*temp;
 	t_stack	*last;
+	t_stack	*prelast;
 
-	if (*ab == NULL || ab == NULL)
-		return ;
-		if ((*ab)->next == NULL)
-	if ((*ab)->next == NULL)
-	{
-		if (output)
-			ft_printf("%s\n", output);
-		return ;
-	}
-	last = st_find_last(*ab);
-	last->prev->next = NULL;
-	last->next = *ab;
-	last->prev = NULL;
-	*ab = last;
-	last->next->prev = last;
 	if (output)
 		ft_printf("%s\n", output);
+	if (!ab || !*ab || !(*ab)->next)
+		return ;
+	last = st_find_last(*ab);
+	prelast = st_find_prelast(*ab);
+	temp = *ab;
+	*ab = last;
+	(*ab)->next = temp;
+	prelast->next = NULL;
 }
 
 void	rrr(t_stack **a, t_stack **b)

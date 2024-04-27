@@ -1,67 +1,70 @@
 #include "../incs/push_swap.h"
 
-void	st_insert(t_stack **a, int data)
+t_stack	*st_newnode(int data)
 {
 	t_stack	*new;
-	t_stack	*last;
 
-	new = (t_stack *)malloc(sizeof(t_stack));
+	new = malloc(sizeof(t_stack));
 	if (!new)
-		free(new);
+		return (NULL);
 	new->data = data;
 	new->next = NULL;
-	if (*a == NULL)
-	{
-		*a = new;
-		new->prev = NULL;
-	}
-	else
-	{
-		last = st_find_last(*a);
-		last->next = new;
-		new->prev = last;
-	}
+	return (new);
 }
 
-int	st_fill(t_stack **a, char **argv)
+void	st_insert(t_stack **a, t_stack *new)
+{
+	t_stack	*temp;
+
+	if (!a || !new)
+		return ;
+	if (!*a)
+	{
+		*a = new;
+		return ;
+	}
+	temp = *a;
+	while (temp->next != NULL)
+		temp = temp->next;
+	temp->next = new;
+}
+
+void	st_fill(t_stack **a, char **argv)
 {
 	long	nbr;
-	char **uargv;
+	char	**uargv;
+	int		i;
+	int		j;
 
-	uargv = NULL;
-	while (*argv)
+	i = 1;
+	while (argv[i] != NULL)
 	{
-		uargv = ft_split(*argv, ' ');
-		while (*uargv)
+		uargv = ft_split(argv[i], ' ');
+		j = 0;
+		while (uargv[j] != NULL)
 		{
-			if (arg_unit_checker(*uargv) == -1)
-				return (-1);
-			nbr = ft_atol(*uargv);
+			arg_unit_checker(uargv[j]);
+			nbr = ft_atol(uargv[j]);
 			if (nbr < -2147483648 || nbr > 2147483647)
-				return (-1);
-			if (dubl_checker(*a, (int)nbr))
-				return (-1);
-			st_insert(a, (int)nbr);
-			uargv++;
+				ft_exit_error();
+			st_insert(a, st_newnode((int)nbr));
+			j++;
 		}
-		argv++;
+		free_free(uargv);
+		i++;
 	}
-	return (0);
 }
 
 void	st_free(t_stack **ab)
 {
-	t_stack	*next;
 	t_stack	*tmp;
 
 	if (ab == NULL)
 		return ;
-	tmp = *ab;
-	while (tmp != NULL)
+	while (*ab != NULL)
 	{
-		next = tmp->next;
-		free(tmp);
-		tmp = next;
+		tmp = (*ab)->next;
+		free(*ab);
+		*ab = tmp;
 	}
-	*ab = NULL;
 }

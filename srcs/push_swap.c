@@ -1,26 +1,22 @@
 #include "../incs/push_swap.h"
+#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
 
+	if ((argc < 2 || (argc == 2 && argv[1][0] == '\0')))
+		ft_exit_error();
 	a = NULL;
 	b = NULL;
-	if ((argc < 2) || (argc == 2 && !argv[1][0]))
+	st_fill(&a, argv);
+	if (dubl_checker(a) == -1)
 	{
-		ft_printf("Error\n");
 		st_free(&a);
-		st_free(&b);
-		exit(EXIT_FAILURE);
+		ft_exit_error();
 	}
-	if (st_fill(&a, argv + 1) == -1)
-	{
-		ft_printf("Error\n");
-		st_free(&a);
-		st_free(&b);
-		exit(EXIT_FAILURE);
-	}
+	st_index(&a);
 	if (st_sorted(a) == 0)
 		sorter(&a, &b);
 	st_free(&a);

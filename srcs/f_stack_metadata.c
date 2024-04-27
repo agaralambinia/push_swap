@@ -9,6 +9,18 @@ t_stack	*st_find_last(t_stack *a)
 	return (a);
 }
 
+t_stack	*st_find_prelast(t_stack *a)
+{
+	t_stack	*temp;
+
+	if (!a || !a->next)
+		return (a);
+	temp = a;
+	while (temp->next->next != NULL)
+		temp = temp->next;
+	return (temp);
+}
+
 t_stack	*st_find_minmax(t_stack *a, int minmax)
 {
 	int			data;
@@ -33,7 +45,7 @@ t_stack	*st_find_minmax(t_stack *a, int minmax)
 	return (s_minmax);
 }
 
-long	st_len(t_stack *a)
+int	st_len(t_stack *a)
 {
 	int	cnt;
 
@@ -59,17 +71,4 @@ int	st_sorted(t_stack *a)
 		a = a->next;
 	}
 	return (1);
-}
-
-t_stack	*st_best(t_stack *a)
-{
-	if (a == NULL)
-		return (NULL);
-	while (a)
-	{
-		if (a->best == 1)
-			return (a);
-		a = a->next;
-	}
-	return (NULL);
 }

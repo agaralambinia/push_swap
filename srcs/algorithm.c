@@ -13,74 +13,63 @@ void    base_case_sort(t_stack **a)
         sa_sb(a, "sa");
 }
 
-void	local_rotate(t_stack **ab, t_stack *first, int stack)
+void	little_sort(t_stack **a, t_stack **b, int len)
 {
-	while (*ab != first)
+	int		i;
+	int		min;
+
+	i = 0;
+	min = st_find_minmax(*a, 0)->data;
+	while (i < len - 3)
 	{
-        if (first->sector == 0)
-        {
-        	if (stack == 0)
-		        ra_rb(ab, "ra");
+		if ((*a)->data == min)
+		{
+			pa_pb(b, a, "pb");
+			i++;
+			min = st_find_minmax(*a, 0)->data;
+		}
+		else
+		{
+			if (top_distance(a, min) > (len - i) / 2)
+				rra_rrb(a, "rra");
 			else
-				rra_rrb(ab, "rb");
-        }
-	    else
-        {
-        	if (stack == 0)
-		        ra_rb(ab, "rra");
-			else
-				rra_rrb(ab, "rrb");
-        }
-    }
+				ra_rb(a, "ra");
+		}
+	}
+	base_case_sort(a);
+	while (*b)
+		pa_pb(a, b, "pa");
 }
 
-void    st_push_a(t_stack **a, t_stack **b)
+void	butterfly_sort(t_stack **a, t_stack **b)
 {
-	t_stack	*best;
+	int		magic;
+	int		i;
+	int		lena;
 
-	best = st_best(*b);
-	if ((best->sector == 0) && (best->place->sector == 0))
-    {
-		while (!((*a == best->place) || (*b == best)))
-		    rr(a, b);
-	    fill_index_sector(*a);
-	    fill_index_sector(*b);
-    }
-	else if ((best->sector == 1) && (best->place->sector == 1))
-    {
-		while (!((*a != best->place) || (*b != best)))
-		    rrr(a, b);
-        fill_index_sector(*a);
-	    fill_index_sector(*b);
-    }
-    local_rotate(a, best->place, 0);
-	local_rotate(b, best, 1);
-	pa_pb(a, b, "pa");
+	i = 0;
+	lena = st_len(*a);
+	magic = magic_number(lena);
+	while (i < lena)
+		st_fill_b(a, b, &i, magic);
+	while (*b)
+	{
+		st_select_max(b);
+		pa_pb(a, b, "pa");
+	}
 }
 
 void    sorter(t_stack **a, t_stack **b)
 {
-    t_stack *min;
-    long len;
+	int len;
 
-    len = st_len(*a);
-    while (len > 3)
-    {
-        pa_pb(b, a, "pb");
-        len--;
-    }
-    base_case_sort(a);
-	while (*b != NULL)
-	{
-		fill_meta(*a, *b);
-		st_push_a(a, b);
-	}
-	fill_index_sector(*a);
-	min = st_find_minmax(*a, 0);
-	if (min->sector == 0)
-		while (*a != min)
-			ra_rb(a, "ra");
-	else
-		while (*a != min)
-			rra_rrb(a, "rra");
+	len = st_len(*a);
+    if (len == 2 && (*a)->data > (*a)->next->data)
+		sa_sb(a, "sa");
+	else if (len == 3)
+		base_case_sort(a);
+	else if (len >= 4 && len <= 5)
+		little_sort(a, b, len);
+	else if (len >= 6)
+		butterfly_sort(a, b);
 }
