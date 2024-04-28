@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: defimova <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/28 20:37:52 by defimova          #+#    #+#             */
+/*   Updated: 2024/04/28 20:37:57 by defimova         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -15,11 +27,11 @@ typedef struct s_stack
 	int				data;
 	int				index;
 	struct s_stack	*next;
-} t_stack;
+}	t_stack;
 
 /* Функции основного алгоритма */
-void    sorter(t_stack **a, t_stack **b);
-void    base_case_sort(t_stack **a);
+void	sorter(t_stack **a, t_stack **b);
+void	base_case_sort(t_stack **a);
 void	little_sort(t_stack **a, t_stack **b, int len);
 void	butterfly_sort(t_stack **a, t_stack **b);
 

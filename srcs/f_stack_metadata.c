@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   f_stack_metadata.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: defimova <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/28 20:37:02 by defimova          #+#    #+#             */
+/*   Updated: 2024/04/28 20:37:03 by defimova         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/push_swap.h"
 
 t_stack	*st_find_last(t_stack *a)
@@ -24,7 +36,7 @@ t_stack	*st_find_prelast(t_stack *a)
 t_stack	*st_find_minmax(t_stack *a, int minmax)
 {
 	int			data;
-	t_stack	*s_minmax;
+	t_stack		*s_minmax;
 
 	if (a == NULL)
 		return (NULL);
@@ -34,12 +46,12 @@ t_stack	*st_find_minmax(t_stack *a, int minmax)
 		data = INT_MIN;
 	while (a != NULL)
 	{
-		if (((a->data <= data) && (minmax == 0)) ||
-			(((a->data >= data) && (minmax == 1))))
+		if (((a->data <= data) && (minmax == 0))
+			|| (((a->data >= data) && (minmax == 1))))
 		{
 			data = a->data;
 			s_minmax = a;
-		}			
+		}
 		a = a->next;
 	}
 	return (s_minmax);

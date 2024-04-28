@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input_check.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: defimova <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/28 20:37:14 by defimova          #+#    #+#             */
+/*   Updated: 2024/04/28 20:37:15 by defimova         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/push_swap.h"
 
 int	dubl_checker(t_stack *a)
@@ -24,10 +36,11 @@ int	dubl_checker(t_stack *a)
 
 void	arg_unit_checker(char *uargv)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if ((uargv[i] == '-' || uargv[i] == '+') && (uargv[i + 1] <= '9' || uargv[i + 1] >= '0'))
+	if ((uargv[i] == '-' || uargv[i] == '+')
+		&& (uargv[i + 1] <= '9' || uargv[i + 1] >= '0'))
 	{
 		if (uargv[i + 1] == '\0')
 			ft_exit_error();
@@ -36,7 +49,7 @@ void	arg_unit_checker(char *uargv)
 	}
 	while (uargv[i])
 	{
-    	if (uargv[i] > '9' || uargv[i] < '0')
+		if (uargv[i] > '9' || uargv[i] < '0')
 			ft_exit_error();
 		i++;
 	}

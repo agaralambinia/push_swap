@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   f_common.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: defimova <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/28 20:35:44 by defimova          #+#    #+#             */
+/*   Updated: 2024/04/28 20:35:45 by defimova         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/push_swap.h"
 
 int	isspace_check(const char a)
@@ -13,7 +25,7 @@ int	isspace_check(const char a)
 
 long	ft_atol(const char *str)
 {
-	int     i;
+	int		i;
 	long	sign;
 	long	res;
 

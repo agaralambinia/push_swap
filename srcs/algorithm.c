@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algorithm.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: defimova <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/28 20:35:28 by defimova          #+#    #+#             */
+/*   Updated: 2024/04/28 20:35:31 by defimova         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/push_swap.h"
 
-void    base_case_sort(t_stack **a)
+void	base_case_sort(t_stack **a)
 {
-    t_stack *max;
+	t_stack	*max;
 
-    max = st_find_minmax(*a, 1);
-    if (*a == max)
-        ra_rb(a, "ra");
-    else if ((*a)->next == max)
-        rra_rrb(a, "rra");
-    if ((*a)->data > (*a)->next->data)
-        sa_sb(a, "sa");
+	max = st_find_minmax(*a, 1);
+	if (*a == max)
+		ra_rb(a, "ra");
+	else if ((*a)->next == max)
+		rra_rrb(a, "rra");
+	if ((*a)->data > (*a)->next->data)
+		sa_sb(a, "sa");
 }
 
 void	little_sort(t_stack **a, t_stack **b, int len)
@@ -59,12 +71,12 @@ void	butterfly_sort(t_stack **a, t_stack **b)
 	}
 }
 
-void    sorter(t_stack **a, t_stack **b)
+void	sorter(t_stack **a, t_stack **b)
 {
-	int len;
+	int	len;
 
 	len = st_len(*a);
-    if (len == 2 && (*a)->data > (*a)->next->data)
+	if (len == 2 && (*a)->data > (*a)->next->data)
 		sa_sb(a, "sa");
 	else if (len == 3)
 		base_case_sort(a);
